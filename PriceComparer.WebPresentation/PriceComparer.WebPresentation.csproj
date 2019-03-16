@@ -146,6 +146,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\SearchViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -185,10 +186,10 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\Search.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -202,6 +203,20 @@
   <ItemGroup>
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PriceComparer.Domain\PriceComparer.Domain.csproj">
+      <Project>{beb3a875-1507-4595-8594-f7dd4d1f373c}</Project>
+      <Name>PriceComparer.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PriceComparer.Jumbo\PriceComparer.Jumbo.csproj">
+      <Project>{338d0ccd-65d3-47d7-84f8-9ef08d748e56}</Project>
+      <Name>PriceComparer.Jumbo</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PriceComparer.Plus\PriceComparer.Plus.csproj">
+      <Project>{bcbf4239-34c0-411a-8fe5-692e7e7c3390}</Project>
+      <Name>PriceComparer.Plus</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

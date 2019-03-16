@@ -1,4 +1,8 @@
-﻿using System;
+﻿using PriceComparer.Domain.Products;
+using PriceComparer.Jumbo;
+using PriceComparer.Plus;
+using PriceComparer.WebPresentation.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -25,6 +29,19 @@ namespace PriceComparer.WebPresentation.Controllers
             ViewBag.Message = "Your contact page.";
 
             return View();
+        }
+
+        public ActionResult Search(string product)
+        {
+            var finder = new ProductFinder();
+            finder.AddProductStore(new JumboProductStore());
+            finder.AddProductStore(new PlusProductStore());
+
+            var model = new SearchViewModel();
+            model.SearchTerm = product;
+            model.Products = finder.Find(product);
+
+            return View(model);
         }
     }
 }
