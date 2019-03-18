@@ -1,10 +1,11 @@
 ﻿using HtmlAgilityPack;
 using PriceComparer.Domain.Products;
+using PriceComparer.Scrapers.Common;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
 
-namespace PriceComparer.Jumbo
+namespace PriceComparer.Scrapers.Jumbo
 {
     public class ProductScraper
     {

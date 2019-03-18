@@ -14,5 +14,7 @@ namespace PriceComparer.WebPresentation.Models
         public string SearchTerm { get; set; }
 
         public IEnumerable<Product> Products { get; set; }
+
+        public string SearchDuration { get; set; }
     }
 }

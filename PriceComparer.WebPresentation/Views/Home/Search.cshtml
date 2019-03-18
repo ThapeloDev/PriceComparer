@@ -5,6 +5,7 @@
 }
 
 <h2>Search for @Model.SearchTerm</h2>
+<span>search took @Model.SearchDuration</span>
 
 @using (Html.BeginForm("Search", "Home", FormMethod.Get))
 {
@@ -25,7 +26,7 @@
     @foreach (var product in Model.Products)
     {
         <tr>
-            <td>@*<img src="@Html.Raw(product.ImageUrl)" />*@</td>
+            <td><img src="@Html.Raw(product.ImageUrl)" /></td>
             <td>@product.Name</td>
             <td>@product.Price</td>
             <td>@product.Supermarket</td>

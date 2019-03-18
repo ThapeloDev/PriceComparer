@@ -1,11 +1,9 @@
 ﻿using PriceComparer.Domain.Products;
-using PriceComparer.Jumbo;
-using PriceComparer.Plus;
+using PriceComparer.Scrapers.Jumbo;
+using PriceComparer.Scrapers.Plus;
 using PriceComparer.WebPresentation.Models;
-using System;
-using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace PriceComparer.WebPresentation.Controllers
@@ -33,13 +31,20 @@ namespace PriceComparer.WebPresentation.Controllers
 
         public ActionResult Search(string product)
         {
+            var stopwatch = new Stopwatch();
+            stopwatch.Start();
+
             var finder = new ProductFinder();
             finder.AddProductStore(new JumboProductStore());
             finder.AddProductStore(new PlusProductStore());
 
             var model = new SearchViewModel();
             model.SearchTerm = product;
-            model.Products = finder.Find(product);
+            model.Products = finder.Find(product).OrderBy(p => p.Price);
+
+            stopwatch.Stop();
+
+            model.SearchDuration = $"{stopwatch.Elapsed.Seconds} seconds and {stopwatch.Elapsed.Milliseconds} milliseconds";
 
             return View(model);
         }

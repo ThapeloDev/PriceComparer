@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Extensions\ConcurrentBagExtensions.cs" />
     <Compile Include="Products\IProductStore.cs" />
     <Compile Include="Products\Product.cs" />
     <Compile Include="Products\ProductFinder.cs" />

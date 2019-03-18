@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{BCBF4239-34C0-411A-8FE5-692E7E7C3390}</ProjectGuid>
+    <ProjectGuid>{5031DA4E-39D3-45E5-A5B4-03E544C94000}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>PriceComparer.Plus</RootNamespace>
-    <AssemblyName>PriceComparer.Plus</AssemblyName>
+    <RootNamespace>PriceComparer.Scrapers</RootNamespace>
+    <AssemblyName>PriceComparer.Scrapers</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -46,9 +46,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="HtmlAttributeCollectionExtensions.cs" />
-    <Compile Include="PlusProductStore.cs" />
-    <Compile Include="ProductScraper.cs" />
+    <Compile Include="Common\HtmlAttributeCollectionExtensions.cs" />
+    <Compile Include="Jumbo\JumboProductStore.cs" />
+    <Compile Include="Jumbo\ProductScraper.cs" />
+    <Compile Include="Plus\PlusProductStore.cs" />
+    <Compile Include="Plus\ProductScraper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

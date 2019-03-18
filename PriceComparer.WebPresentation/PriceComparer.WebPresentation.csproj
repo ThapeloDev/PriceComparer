@@ -209,13 +209,9 @@
       <Project>{beb3a875-1507-4595-8594-f7dd4d1f373c}</Project>
       <Name>PriceComparer.Domain</Name>
     </ProjectReference>
-    <ProjectReference Include="..\PriceComparer.Jumbo\PriceComparer.Jumbo.csproj">
-      <Project>{338d0ccd-65d3-47d7-84f8-9ef08d748e56}</Project>
-      <Name>PriceComparer.Jumbo</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\PriceComparer.Plus\PriceComparer.Plus.csproj">
-      <Project>{bcbf4239-34c0-411a-8fe5-692e7e7c3390}</Project>
-      <Name>PriceComparer.Plus</Name>
+    <ProjectReference Include="..\PriceComparer.Scrapers\PriceComparer.Scrapers.csproj">
+      <Project>{5031da4e-39d3-45e5-a5b4-03e544c94000}</Project>
+      <Name>PriceComparer.Scrapers</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
