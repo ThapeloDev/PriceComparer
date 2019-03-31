@@ -1,12 +1,12 @@
 ﻿using PriceComparer.Domain.Products;
+using PriceComparer.Scrapers.Common;
 using System.Collections.Generic;
-using System.Net;
 
 namespace PriceComparer.Scrapers.Plus
 {
-    public class PlusProductStore : IProductStore
+    public class PlusProductStore : AbstractHtmlProductStore
     {
-        public IEnumerable<Product> Find(string productName)
+        protected override IEnumerable<Product> GetProducts(string productName)
         {
             var html = GetHtml($"https://www.plus.nl/zoekresultaten?SearchTerm={productName}");
             var scraper = new ProductScraper();
@@ -15,14 +15,6 @@ namespace PriceComparer.Scrapers.Plus
 
             return products;
 
-        }
-
-        private string GetHtml(string url)
-        {
-            using (WebClient client = new WebClient())
-            {
-                return client.DownloadString(url);
-            }
         }
     }
 }

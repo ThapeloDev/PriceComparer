@@ -7,7 +7,7 @@ using System.Globalization;
 
 namespace PriceComparer.Scrapers.Plus
 {
-    public class ProductScraper
+    public class ProductScraper : AbstractProductScraper
     {
         public IEnumerable<Product> Scrape(string htmlSource)
         {
@@ -26,8 +26,9 @@ namespace PriceComparer.Scrapers.Plus
                 var productId = item.Attributes["data-id"].Value;
                 var imageUrl = $"https://www.plus.nl/INTERSHOP/static/WFS/PLUS-Site/-/PLUS/nl_NL/product/M/{productId}.png";
                 var price = item.Attributes.GetValue<decimal>("data-price", culture);
+                var unitSize = GetUnitSize(item.QuerySelector("span.product-tile__quantity")?.InnerText);
 
-                var product = new Product(title, price, imageUrl, "Plus");
+                var product = new Product(title, price, imageUrl, "Plus", unitSize);
                 products.Add(product);
             }
 

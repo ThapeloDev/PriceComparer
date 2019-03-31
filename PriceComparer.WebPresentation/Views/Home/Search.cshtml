@@ -15,21 +15,34 @@
 
 <h3>Results (@Model.Products.Count())</h3>
 
-<table class="table table table-striped">
-    <tr>
-        <th></th>
-        <th>Product</th>
-        <th>Prijs</th>
-        <th>Supermarkt</th>
-    </tr>
+<div class="row">
 
-    @foreach (var product in Model.Products)
+    @foreach (var group in Model.Products.GroupBy(p => p.Supermarket))
     {
-        <tr>
-            <td><img src="@Html.Raw(product.ImageUrl)" /></td>
-            <td>@product.Name</td>
-            <td>@product.Price</td>
-            <td>@product.Supermarket</td>
-        </tr>
-        }
-</table>
+        <div class="col-md-4">
+            <h3>@group.Key</h3>
+            <table class="table table table-striped table-products">
+                <tr>
+                    <th></th>
+                    <th>Product</th>
+                    <th>Inhoud</th>
+                    <th>Prijs</th>
+                    @*<th>Supermarkt</th>*@
+                </tr>
+
+                @foreach (var product in group)
+                {
+                <tr>
+                    <td><img src="@Html.Raw(product.ImageUrl)" /></td>
+                    <td>@product.Name</td>
+                    <td>@product.UnitSize.Size @product.UnitSize.Unit</td>
+                    <td>@product.Price</td>
+                    @*<td>@product.Supermarket</td>*@
+                </tr>
+                }
+            </table>
+        </div>
+    }
+
+</div>
+

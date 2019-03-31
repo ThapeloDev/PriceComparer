@@ -17,5 +17,13 @@ namespace PriceComparer.WebPresentation
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
         }
+
+        protected void Application_Error(object sender, EventArgs e)
+        {
+            //Exception exception = Server.GetLastError();
+            //System.Diagnostics.Debug.WriteLine(exception);
+
+            //Response.Redirect("/Home/Error");
+        }
     }
 }

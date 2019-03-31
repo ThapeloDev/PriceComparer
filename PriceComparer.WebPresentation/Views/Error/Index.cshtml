@@ -1,0 +1,20 @@
+﻿@model PriceComparer.WebPresentation.Models.ErrorModel
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Hmmm, beetje jammer dit...</h2>
+
+<h3>Fourmelding</h3>
+<div>@Model.Message</div>
+
+<hr/>
+
+<h3>Exception</h3>
+
+<div> @Model.Exception</div>
+<hr/>
+<h3>Stacktrace</h3>
+<div>
+    @Model.Stacktrace
+</div>

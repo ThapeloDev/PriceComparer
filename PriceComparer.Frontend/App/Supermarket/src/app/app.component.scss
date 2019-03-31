@@ -1,0 +1,62 @@
+*:focus {
+  outline: none;
+}
+
+.search-container {
+  background: #f7f7f7;
+  padding: 20px;
+}
+
+.search-box {
+  position: relative;
+  border: 1px solid lightgray;
+  padding: 5px;
+  background: white;
+}
+
+.search-box--input {
+  background: transparent;
+  border: none;
+  width: 100%;
+  height: calc(1.5em + 0.75rem + 2px);
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #495057;
+}
+
+.search-box--icon {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  cursor: pointer;
+}
+
+.loader-box {
+  text-align: center;
+  margin: 30px 0;
+}
+
+.filter-box {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.product-search-result-box {
+}
+.table-products {
+  background: #f7f7f7;
+}
+
+.table-products tr:not(:first-child) {
+  height: 120px;
+}
+
+.table-products th {
+  cursor: pointer;
+}
+
+.table-products tbody tr td img {
+  max-height: 95px;
+}

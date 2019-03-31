@@ -4,10 +4,11 @@ using PriceComparer.Scrapers.Common;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Net;
 
 namespace PriceComparer.Scrapers.Jumbo
 {
-    public class ProductScraper
+    public class ProductScraper : AbstractProductScraper
     {
         public IEnumerable<Product> Scrape(string htmlSource)
         {
@@ -23,10 +24,11 @@ namespace PriceComparer.Scrapers.Jumbo
             foreach (var item in collection)
             {
                 var title = item.QuerySelector("dt.jum-item-title a").InnerText;
-                var imageUrl = item.QuerySelector("dd.jum-item-figure img").Attributes["data-jum-src"].Value;
+                var imageUrl = WebUtility.HtmlDecode(item.QuerySelector("dd.jum-item-figure img").Attributes["data-jum-src"].Value);
                 var price = item.QuerySelector("dd.jum-item-price input[jum-data-price]").Attributes.GetValue<decimal>("jum-data-price", culture);
+                var unitSize = GetUnitSize(item.QuerySelector("span.jum-pack-size")?.InnerText);
 
-                var product = new Product(title, price, imageUrl, "Jumbo");
+                var product = new Product(title, price, imageUrl, "Jumbo", unitSize);
                 products.Add(product);
             }
 

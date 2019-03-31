@@ -22,3 +22,11 @@ select,
 textarea {
     max-width: 280px;
 }
+
+.table-products tr:not(:first-child) {
+    height: 120px;
+}
+
+.table-products tbody tr td img {
+    max-height: 100px;
+}

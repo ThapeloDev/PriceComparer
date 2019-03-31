@@ -1,4 +1,5 @@
 ﻿using PriceComparer.Domain.Products;
+using PriceComparer.Scrapers.AH;
 using PriceComparer.Scrapers.Jumbo;
 using PriceComparer.Scrapers.Plus;
 using PriceComparer.WebPresentation.Models;
@@ -31,22 +32,36 @@ namespace PriceComparer.WebPresentation.Controllers
 
         public ActionResult Search(string product)
         {
-            var stopwatch = new Stopwatch();
-            stopwatch.Start();
+            try
+            {
+                var stopwatch = new Stopwatch();
+                stopwatch.Start();
 
-            var finder = new ProductFinder();
-            finder.AddProductStore(new JumboProductStore());
-            finder.AddProductStore(new PlusProductStore());
+                var finder = new ProductFinder();
+                finder.AddProductStore(new JumboProductStore());
+                finder.AddProductStore(new PlusProductStore());
+                finder.AddProductStore(new AHProductStore());
+                var model = new SearchViewModel();
+                model.SearchTerm = product;
+                model.Products = finder.Find(product).OrderBy(p => p.Price);
 
-            var model = new SearchViewModel();
-            model.SearchTerm = product;
-            model.Products = finder.Find(product).OrderBy(p => p.Price);
+                stopwatch.Stop();
 
-            stopwatch.Stop();
+                model.SearchDuration = $"{stopwatch.Elapsed.Seconds} seconds and {stopwatch.Elapsed.Milliseconds} milliseconds";
 
-            model.SearchDuration = $"{stopwatch.Elapsed.Seconds} seconds and {stopwatch.Elapsed.Milliseconds} milliseconds";
+                return View(model);
+            }
+            catch (System.Exception ex)
+            {
+                var model = new ErrorModel
+                {
+                    Exception = ex.ToString(),
+                    Message = ex.Message,
+                    Stacktrace = ex.StackTrace
+                };
 
-            return View(model);
+                return RedirectToAction("Index", "Error", model);
+            }
         }
     }
 }
