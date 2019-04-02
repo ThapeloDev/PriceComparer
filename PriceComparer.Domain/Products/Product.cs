@@ -1,12 +1,15 @@
-﻿namespace PriceComparer.Domain.Products
+﻿using System.Diagnostics;
+
+namespace PriceComparer.Domain.Products
 {
+    [DebuggerDisplay("{Name}")]
     public class Product
     {
         private Product()
         {
         }
 
-        public Product(string name, decimal price, string imageUrl, string supermarket)
+        public Product(string name, Price price, string imageUrl, string supermarket)
         {
             Name = name;
             Price = price;
@@ -14,7 +17,7 @@
             Supermarket = supermarket;
         }
 
-        public Product(string name, decimal price, string imageUrl, string supermarket, UnitSize unitSize)
+        public Product(string name, Price price, string imageUrl, string supermarket, UnitSize unitSize)
         {
             Name = name;
             Price = price;
@@ -25,7 +28,7 @@
 
         public string Name { get;  }
 
-        public decimal Price { get;  }
+        public Price Price { get;  }
 
         public string ImageUrl { get;  }
 

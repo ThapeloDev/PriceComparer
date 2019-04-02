@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Globalization;
+using System.Text.RegularExpressions;
 
 namespace PriceComparer.Domain
 {
@@ -22,5 +23,11 @@ namespace PriceComparer.Domain
 
             return (T)Convert.ChangeType(value, typeof(T), formatProvider);
         }
+
+        public static string StripSpecialChars(this string value)
+        {
+            return Regex.Replace(value, "[^0-9]+", "", RegexOptions.Compiled);
+        }
+
     }
 }

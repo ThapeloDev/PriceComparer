@@ -39,6 +39,7 @@ namespace PriceComparer.Scrapers.Equalisers.Size
         {
             _unitBuilder.Add("l", () => new Liter());
             _unitBuilder.Add("liter", () => new Liter());
+            _unitBuilder.Add("lt", () => new Liter());
             _unitBuilder.Add("ml", () => new Milliliter());
         }
     }

@@ -22,12 +22,7 @@ export class AppComponent implements OnInit {
   constructor(private productService: ProductServiceService) {}
 
   ngOnInit() {
-    this.searching = true;
-    this.productService.search("gehakt").subscribe(result => {
-      this.originalResults = JSON.parse(JSON.stringify(result));
-      this.results = { ...result };
-      this.searching = false;
-    });
+    
   }
 
   onSubmit() {

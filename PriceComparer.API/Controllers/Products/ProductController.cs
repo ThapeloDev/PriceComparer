@@ -23,7 +23,11 @@ namespace PriceComparer.API.Controllers.Products
 
             var model = new SearchResults();
             model.SearchTerm = keyword;
-            model.Supermarkets = finder.Find(keyword).GroupBy(p => p.Supermarket).Select(s => new Supermarket
+            model.Supermarkets = 
+                finder
+                .Find(keyword)
+                .GroupBy(p => p.Supermarket)
+                .Select(s => new Supermarket
             {
                 Name = s.Key,
                 Products = s.ToList()

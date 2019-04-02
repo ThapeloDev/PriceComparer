@@ -1,5 +1,11 @@
+$offerColor: #20c635;
+
 *:focus {
   outline: none;
+}
+
+.strikethrough {
+  text-decoration: line-through;
 }
 
 .search-container {
@@ -53,10 +59,20 @@
   height: 120px;
 }
 
+.table-products tr.offer {
+  background: $offerColor;
+  color: white;
+}
+
 .table-products th {
   cursor: pointer;
 }
 
 .table-products tbody tr td img {
   max-height: 95px;
+}
+
+.offer-description {
+  font-weight: bolder;
+  font-size: 13px;
 }

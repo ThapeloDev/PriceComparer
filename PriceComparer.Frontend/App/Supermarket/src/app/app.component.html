@@ -68,18 +68,35 @@
             <th></th>
             <th (click)="sort('Name')">Product</th>
             <th (click)="sort('UnitSize.Size')">Inhoud</th>
-            <th (click)="sort('Price')">Prijs</th>
+            <th (click)="sort('Price.RegularPrice')">Prijs</th>
           </tr>
           <tr
             *ngFor="
               let product of (supermarket.Products
                 | sortingProducts: path:order)
             "
+            [ngClass]="{'offer' : product.Price.OfferPrice > 0 || product.Price.OfferDescription}"
           >
             <td><img [src]="product.ImageUrl" /></td>
-            <td>{{ product.Name }}</td>
+            <td>
+                {{ product.Name }}
+                <br/>
+                <br/>
+                <span class="offer-description">
+                    {{product.Price.OfferDescription}}
+                </span>
+            </td>
             <td>{{ product.UnitSize.Size }} {{ product.UnitSize.Unit }}</td>
-            <td>{{ product.Price }}</td>
+            <td>
+              <span [hidden]="product.Price.OfferPrice <= 0">
+                  {{product.Price.OfferPrice | number:'1.2-2'}}
+                <br/>
+              </span>
+              <span [ngClass]="{'strikethrough' : product.Price.OfferPrice > 0}">
+                {{ product.Price.RegularPrice | number:'1.2-2' }}
+              </span>
+              
+            </td>
           </tr>
         </table>
       </div>

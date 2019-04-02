@@ -11,7 +11,7 @@ namespace PriceComparer.Scrapers.Tests
         {
             var store = new JumboProductStore();
 
-            store.Find("ei");
+            store.Find("mozzarella");
         }
     }
 }

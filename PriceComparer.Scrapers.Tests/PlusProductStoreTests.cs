@@ -11,7 +11,7 @@ namespace PriceComparer.Scrapers.Tests
         {
             var store = new PlusProductStore();
 
-            store.Find("ei");
+            store.Find("pijnboompitten");
         }
     }
 }

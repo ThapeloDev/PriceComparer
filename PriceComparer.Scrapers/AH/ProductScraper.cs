@@ -40,15 +40,38 @@ namespace PriceComparer.Scrapers.AH
             return products;
         }
 
-        private decimal GetPrice(HtmlNode item)
+        private Price GetPrice(HtmlNode item)
         {
-            var integer = item.QuerySelector("span.price__integer").InnerText;
-            var fractional = item.QuerySelector("span.price__fractional").InnerText;
+            if (!HasOffer(item))
+            {
+                var priceLabel = item.QuerySelector("div.price-label");
+                var price = ExtractPrice(priceLabel);
+                return new Price(price);
+            }
+
+            var offerPriceDiv = item.QuerySelector("div.price--bonus");
+            var offerPrice = ExtractPrice(offerPriceDiv);
+
+            var regularPriceDiv = item.QuerySelector("div.price-label__was");
+            var regularPrice = ExtractPrice(regularPriceDiv);
+
+            return new Price(regularPrice, offerPrice);
+        }
+
+        private decimal ExtractPrice(HtmlNode offerPriceDiv)
+        {
+            var integer = offerPriceDiv.QuerySelector("span.price__integer").InnerText;
+            var fractional = offerPriceDiv.QuerySelector("span.price__fractional").InnerText;
 
             var concatPrice = $"{integer}.{fractional}";
             var price = concatPrice.ChangeType<decimal>();
 
             return price;
+        }
+
+        private bool HasOffer(HtmlNode item)
+        {
+            return item.QuerySelector("div.price-label__was") != null;
         }
     }
 }
